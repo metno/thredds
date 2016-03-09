@@ -48,7 +48,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
             <ContactVoiceTelephone><c:out value="${config.contactTelephone}"/></ContactVoiceTelephone>
             <ContactElectronicMailAddress><c:out value="${config.contactEmail}"/></ContactElectronicMailAddress>
         </ContactInformation>
-        <Fees>none</Fees>
+        <Fees>Credit should be given to The Norwegian Meteorological Institute as the source of data</Fees>
         <AccessConstraints>none</AccessConstraints>
         <LayerLimit>${layerLimit}</LayerLimit>
         <MaxWidth>${config.maxImageWidth}</MaxWidth>
