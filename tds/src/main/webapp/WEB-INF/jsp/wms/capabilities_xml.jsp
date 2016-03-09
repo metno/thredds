@@ -24,6 +24,8 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
         version="1.3.0"
         updateSequence="${utils:dateTimeToISO8601(lastUpdate)}"
         xmlns="http://www.opengis.net/wms"
+        xmlns:inspire_vs="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0"
+        xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0"
         xmlns:xlink="http://www.w3.org/1999/xlink"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.opengis.net/wms http://schemas.opengis.net/wms/1.3.0/capabilities_1_3_0.xsd">
@@ -157,4 +159,49 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
             </c:forEach> <%-- End loop through datasets --%>
         </Layer>
     </Capability>
+    <inspire_vs:ExtendedCapabilities>
+        <inspire_common:ResourceType>service</inspire_common:ResourceType>
+        <inspire_common:ResourceLocator>
+            <inspire_common:URL>
+                <c:out value="${wmsBaseUrl}?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0"/>
+            </inspire_common:URL>
+        </inspire_common:ResourceLocator>
+        <inspire_common:SpatialDataServiceType>view</inspire_common:SpatialDataServiceType>
+        <inspire_common:TemporalReference>
+            <inspire_common:DateOfLastRevision><c:out value="${utils:dateTimeToISO8601(lastUpdate).substring(0,10)}"/></inspire_common:DateOfLastRevision>
+        </inspire_common:TemporalReference>
+        <inspire_common:Conformity>
+            <inspire_common:Degree>notEvaluated</inspire_common:Degree>
+        </inspire_common:Conformity>
+        <inspire_common:MetadataURL>
+            <inspire_common:URL>
+                <c:out value="${wmsBaseUrl}?SERVICE=WMS&REQUEST=GetCapabilities&VERSION=1.3.0"/>
+            </inspire_common:URL>
+        </inspire_common:MetadataURL>
+        <inspire_common:MetadataPointOfContact>
+            <inspire_common:OrganisationName>Norwegian Meteorological Institute</inspire_common:OrganisationName>
+            <inspire_common:EmailAddress>thredds@met.no</inspire_common:EmailAddress>
+        </inspire_common:MetadataPointOfContact>
+        <inspire_common:MetadataDate><c:out value="2014-02-18"/></inspire_common:MetadataDate>
+        <c:forEach var="keyword" items="${config.keywords}">
+            <inspire_common:Keyword xsi:type="inspire_common:classificationOfSpatialDataService">
+                <inspire_common:KeywordValue>
+                   ${keyword}
+                </inspire_common:KeywordValue>
+            </inspire_common:Keyword>
+        </c:forEach>
+        <inspire_common:Keyword xsi:type="inspire_common:classificationOfSpatialDataService">
+            <inspire_common:KeywordValue>
+                Oceanographic geographical features
+            </inspire_common:KeywordValue>
+        </inspire_common:Keyword>
+        <inspire_common:SupportedLanguages>
+            <inspire_common:DefaultLanguage>
+                <inspire_common:Language>eng</inspire_common:Language>
+            </inspire_common:DefaultLanguage>
+        </inspire_common:SupportedLanguages>
+        <inspire_common:ResponseLanguage>
+            <inspire_common:Language>eng</inspire_common:Language>
+        </inspire_common:ResponseLanguage>
+    </inspire_vs:ExtendedCapabilities>
 </WMS_Capabilities>
