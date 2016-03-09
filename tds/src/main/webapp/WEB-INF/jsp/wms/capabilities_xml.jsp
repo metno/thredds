@@ -37,6 +37,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
             <c:forEach var="keyword" items="${config.keywords}">
             <Keyword>${keyword}</Keyword>
             </c:forEach>
+            <Keyword>humanGeographicViewer</Keyword>
         </KeywordList>
         <OnlineResource xlink:type="simple" xlink:href="<c:out value="${config.serviceProviderUrl}"/>"/>
         <ContactInformation>
