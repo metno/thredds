@@ -81,6 +81,7 @@ response.setDateHeader ("Expires", 0); //prevents caching at the proxy server
             <c:forEach var="crsCode" items="${supportedCrsCodes}">
             <CRS>${crsCode}</CRS>
             </c:forEach>
+            <CRS>EPSG:3575</CRS>
             <CRS>EPSG:4258</CRS>
             <CRS>EPSG:32633</CRS>
             <c:forEach var="dataset" items="${datasets}">
