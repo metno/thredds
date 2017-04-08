@@ -21,6 +21,7 @@ import ucar.nc2.dataset.NetcdfDataset;
 import ucar.nc2.ft.FeatureDataset;
 import ucar.nc2.ft.FeatureDatasetFactoryManager;
 import ucar.nc2.ft.FeatureDatasetPoint;
+import ucar.nc2.iosp.netcdf4.Nc4;
 import ucar.nc2.jni.netcdf.Nc4Iosp;
 import ucar.nc2.ogc.MarshallingUtil;
 import ucar.nc2.util.CompareNetcdf2;
@@ -99,6 +100,9 @@ public class DsgSubsetWriterTest {
                 { FeatureType.POINT,   SupportedFormat.CSV_FILE, ncssParamsAll,      "outputAll.csv"      },
                 { FeatureType.POINT,   SupportedFormat.CSV_FILE, ncssParamsPoint,    "outputSubset.csv"   },
 
+                { FeatureType.POINT,   SupportedFormat.GEOCSV_FILE, ncssParamsAll,      "outputAll.csv"      },
+                { FeatureType.POINT,   SupportedFormat.GEOCSV_FILE, ncssParamsPoint,    "outputSubset.csv"   },
+
                 { FeatureType.POINT,   SupportedFormat.XML_FILE, ncssParamsAll,      "outputAll.xml"      },
                 { FeatureType.POINT,   SupportedFormat.XML_FILE, ncssParamsPoint,    "outputSubset.xml"   },
 
@@ -112,6 +116,10 @@ public class DsgSubsetWriterTest {
                 { FeatureType.STATION, SupportedFormat.CSV_FILE, ncssParamsAll,      "outputAll.csv"      },
                 { FeatureType.STATION, SupportedFormat.CSV_FILE, ncssParamsStation1, "outputSubset1.csv"  },
                 { FeatureType.STATION, SupportedFormat.CSV_FILE, ncssParamsStation2, "outputSubset2.csv"  },
+
+                { FeatureType.STATION, SupportedFormat.GEOCSV_FILE, ncssParamsAll,      "outputAll.csv"      },
+                { FeatureType.STATION, SupportedFormat.GEOCSV_FILE, ncssParamsStation1, "outputSubset1.csv"  },
+                { FeatureType.STATION, SupportedFormat.GEOCSV_FILE, ncssParamsStation2, "outputSubset2.csv"  },
 
                 { FeatureType.STATION, SupportedFormat.XML_FILE, ncssParamsAll,      "outputAll.xml"      },
                 { FeatureType.STATION, SupportedFormat.XML_FILE, ncssParamsStation1, "outputSubset1.xml"  },
@@ -160,6 +168,7 @@ public class DsgSubsetWriterTest {
         switch (format) {
             case CSV_FILE: extension = "csv"; break;
             case XML_FILE: // fall through
+            case GEOCSV_FILE: extension = "geocsv"; break;
             case WATERML2: extension = "xml"; break;
             case NETCDF3:  extension = "nc";  break;
             case NETCDF4:  extension = "nc4"; break;
@@ -209,7 +218,8 @@ public class DsgSubsetWriterTest {
     private static class NcssNetcdfObjFilter implements CompareNetcdf2.ObjFilter {
         @Override
         public boolean attCheckOk(Variable v, Attribute att) {
-            return !att.getShortName().equals(CDM.TITLE);  // Ignore the "title" attribute.
+            return !att.getShortName().equals(CDM.TITLE) &&  // Ignore the "title" attribute.
+                   !att.getShortName().equals(Nc4.NETCDF4_NC_PROPERTIES);
         }
 
         @Override
