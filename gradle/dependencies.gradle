@@ -11,14 +11,46 @@ allprojects {  // Doesn't apply any plugins: safe to run closure on all projects
         // https://blog.bintray.com/2015/02/09/android-studio-migration-from-maven-central-to-jcenter/
         jcenter()
         mavenCentral()  // JCenter isn't quite a superset of Maven Central.
+        
+        // All of the repositories below could be replaced with:
+        //     url "https://artifacts.unidata.ucar.edu/repository/unidata-all/"
+        // which is a group repository that contains all other repositories. However, I prefer to list all source
+        // repos explicitly so that we know where all artifacts ultimately come from.
+        
+        // Hosted repositories.
         maven {
-            url "https://artifacts.unidata.ucar.edu/content/repositories/unidata"
+            // For "threddsIso", "ncwms", "visad" and "jj2000".
+            url "https://artifacts.unidata.ucar.edu/repository/unidata-releases/"
         }
         maven {
-            url "https://artifacts.unidata.ucar.edu/content/repositories/unidata-3rdparty/"
+            // For "threddsIso" and "ncwms" snapshots.
+            url "https://artifacts.unidata.ucar.edu/repository/unidata-snapshots/"
         }
         maven {
-            url "https://dl.bintray.com/cwardgar/maven/"  // For 'com.cwardgar.gretty:gretty-fork'.
+            // For "bounce" and several dependencies needed by "ncwms".
+            // Contains artifacts that are not available in any other Maven repository on the net.
+            // We should be concerned that we're relying on any such artifacts. TODO: Remove our dependence on these.
+            url "https://artifacts.unidata.ucar.edu/repository/unidata-3rdparty/"
+        }
+    
+        // Proxied repositories. In the event that the remote repos go away, we still have copies of the artifacts.
+        maven {
+            // For "geotk-referencing", which is needed by "ncwms". Repositories are not inherited from a dependency,
+            // so we must duplicate ncwms's needed repos here. See https://stackoverflow.com/a/19908009/3874643.
+            // Proxies 'http://maven.geotoolkit.org/'.
+            url "https://artifacts.unidata.ucar.edu/repository/unidata-geotoolkit/"
+        }
+        maven {
+            // For "gretty". Proxies 'https://dl.bintray.com/cwardgar/maven/'.
+            url "https://artifacts.unidata.ucar.edu/repository/unidata-cwardgar/"
+        }
+        maven {
+            // For "ncsos". Proxies 'http://maven.asascience.com/maven/ncsos-releases/'.
+            url "https://artifacts.unidata.ucar.edu/repository/unidata-ncsos/"
+        }
+        maven {
+            // For "52n-oxf-xmlbeans". Proxies 'http://52north.org/maven/repo/releases/'.
+            url "https://artifacts.unidata.ucar.edu/repository/unidata-52north/"
         }
     }
 }
@@ -44,7 +76,7 @@ libraries["gradle-extra-configurations-plugin"] = "com.netflix.nebula:gradle-ext
 
 ////////////////////////////////////////// Spring //////////////////////////////////////////
 
-versions["spring"] = "4.1.9.RELEASE"
+versions["spring"] = "4.3.13.RELEASE"
 
 libraries["spring-core"] = "org.springframework:spring-core:${versions["spring"]}"
 
@@ -92,7 +124,7 @@ libraries["slf4j-jdk14"] = "org.slf4j:slf4j-jdk14:${versions["slf4j"]}"
 
 libraries["jcl-over-slf4j"] = "org.slf4j:jcl-over-slf4j:${versions["slf4j"]}"
 
-versions["log4j"] = "2.7"
+versions["log4j"] = "2.8.2"
 
 libraries["log4j-api"] = "org.apache.logging.log4j:log4j-api:${versions["log4j"]}"
 
@@ -155,9 +187,9 @@ libraries["jna"] = "net.java.dev.jna:jna:4.2.2"
 
 libraries["joda-time"] = "joda-time:joda-time:2.8.1"
 
-libraries["jsoup"] = "org.jsoup:jsoup:1.7.2"
+libraries["jsoup"] = "org.jsoup:jsoup:1.11.2"
 
-libraries["protobuf-java"] = "com.google.protobuf:protobuf-java:2.5.0"
+libraries["protobuf-java"] = "com.google.protobuf:protobuf-java:3.5.0"
 
 libraries["quartz"] = "org.quartz-scheduler:quartz:2.2.0"
 
@@ -187,14 +219,12 @@ libraries["commons-compress"] = "org.apache.commons:commons-compress:1.8.1"
 
 libraries["oro"] = "oro:oro:2.0.8"
 
-libraries["ncwms"] = dependencies.create("uk.ac.rdg.resc:ncwms:1.2.tds.4.6.7") {
+libraries["ncwms"] = dependencies.create("uk.ac.rdg.resc:ncwms:1.2.tds.4.6.11-SNAPSHOT") {
     // This is an external dependency on an old artifact of ours.
     // The "cdm" artifact that we build in this project will take its place.
     // This needs to be a local exclusion; globally excluding "edu.ucar:cdm" would be very bad.
     exclude group: 'edu.ucar', module: 'cdm'  // version "4.6.1"
 }
-
-libraries["geoapi-pending"] = "org.opengis:geoapi-pending:3.1-M04"
 
 libraries["javax.servlet-api"] = "javax.servlet:javax.servlet-api:3.1.0"
 
@@ -208,7 +238,31 @@ libraries["jaxen"] = "jaxen:jaxen:1.1.4"
 
 libraries["threddsIso"] = "EDS:threddsIso:2.2.9"
 
-libraries["aws-java-sdk-s3"] = "com.amazonaws:aws-java-sdk-s3:1.11.113"
+libraries["aws-java-sdk-s3"] = dependencies.create("com.amazonaws:aws-java-sdk-s3:1.11.236") {
+    // exclude jackson deps so that they can be overridden 
+    // with 2.7.x deps to address security issue. See
+    // https://github.com/aws/aws-sdk-java/issues/1159
+    // as of the time these were added, the versions of these were:
+    // jackson-core: 2.6.7
+    // jackson-annotations: 2.6.0
+    // jackson-databind: 2.6.7.1
+    exclude group: 'com.fasterxml.jackson.core', module: 'jackson-core'
+    exclude group: 'com.fasterxml.jackson.core', module: 'jackson-annotations'
+    exclude group: 'com.fasterxml.jackson.core', module: 'jackson-databind'
+}
+
+// replace the jackson.core libs that were excluded from aws-java-sdk-s3
+libraries["jackson-core"] = "com.fasterxml.jackson.core:jackson-core:2.7.9"
+libraries["jackson-annotations"] = "com.fasterxml.jackson.core:jackson-annotations:2.7.9"
+libraries["jackson-databind"] = "com.fasterxml.jackson.core:jackson-databind:2.7.9.1"
+
+libraries["ncsos"] = dependencies.create("com.asascience:ncsos:1.4.3") {
+    // This is an external TDS plugin that depends on an old
+    // thredds-parent artifact of ours (version 4.5.3).
+    // Need to exclude old artifacts used in the build
+    exclude group: 'edu.ucar', module: 'netcdf4'
+    exclude group: 'edu.ucar', module: 'tds'
+}
 
 libraries["commonmark"] = "com.atlassian.commonmark:commonmark:0.9.0"
 
