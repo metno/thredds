@@ -61,6 +61,10 @@ dependencies {
     runtime libraries["log4j-web"]
 
     compile libraries["commonmark"]
+
+    compile libraries["simpleclient"]
+    compile libraries["simpleclient_hotspot"]
+    runtime libraries["simpleclient_servlet"]
 }
 
 // Adds ':tds:prepareInplaceWebAppClasses', which ':it:integrationTest' depends on.

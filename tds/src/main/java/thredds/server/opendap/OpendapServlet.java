@@ -59,6 +59,8 @@ import ucar.nc2.dods.DODSNetcdfFile;
 import ucar.nc2.NetcdfFile;
 import ucar.nc2.util.EscapeStrings;
 
+import io.prometheus.client.hotspot.DefaultExports;
+
 /**
  * THREDDS opendap server.
  *
@@ -83,6 +85,7 @@ public class OpendapServlet extends AbstractServlet {
 
   public void init() throws javax.servlet.ServletException {
     super.init();
+    DefaultExports.initialize();
 
     org.slf4j.Logger logServerStartup = org.slf4j.LoggerFactory.getLogger("serverStartup");
     logServerStartup.info(getClass().getName() + " initialization start");

@@ -54,6 +54,9 @@ allprojects {  // Doesn't apply any plugins: safe to run closure on all projects
         maven {
             url "http://52north.org/maven/repo/releases/"  // For "52n-oxf-xmlbeans".
         }
+        maven {
+            url "https://mvnrepository.com/artifact"  // For io.prometheus
+        }
         
         // Hosted snapshot repository. We want this to be last so that we can minimize warnings such as:
         //   Failed to get resource: HEAD. [HTTP HTTP/1.1 400 Repository version policy:
@@ -284,6 +287,12 @@ libraries["ncsos"] = dependencies.create("com.asascience:ncsos:1.4.3") {
 }
 
 libraries["commonmark"] = "com.atlassian.commonmark:commonmark:0.11.0"
+
+////////////////////////////////////////// Metrics //////////////////////////////////////////
+
+libraries["simpleclient"] = "io.prometheus:simpleclient:0.6.0"
+libraries["simpleclient_hotspot"] = "io.prometheus:simpleclient_hotspot:0.6.0"
+libraries["simpleclient_servlet"] = "io.prometheus:simpleclient_servlet:0.6.0"
 
 //////////////////////////// Transitive dependency replacements and exclusions ////////////////////////////
 
