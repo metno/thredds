@@ -195,7 +195,7 @@ libraries["jcip-annotations"] = "net.jcip:jcip-annotations:1.0"
 
 libraries["jdom2"] = "org.jdom:jdom2:2.0.4"
 
-libraries["je"] = "com.sleepycat:je:4.0.92"
+libraries["je"] = "com.sleepycat:je:18.3.12"
 
 libraries["jna"] = "net.java.dev.jna:jna:4.2.2"
 
@@ -205,15 +205,7 @@ libraries["jsoup"] = "org.jsoup:jsoup:1.11.2"
 
 libraries["protobuf-java"] = "com.google.protobuf:protobuf-java:3.5.0"
 
-libraries["quartz"] = dependencies.create("org.quartz-scheduler:quartz:2.2.3") {
-    // exclude c3p0 deps so that they can be overridden
-    // with 0.9.5.3 to address a potential security issue.
-    // See https://github.com/swaldman/c3p0/issues/123
-    exclude group: 'com.mchange', module: 'c3p0'
-}
-
-// replace the c3p0 lib that were excluded from quartz
-libraries["c3p0"] = "com.mchange:c3p0:0.9.5.3"
+libraries["quartz"] = "org.quartz-scheduler:quartz:2.3.1"
 
 libraries["visad"] = "edu.wisc.ssec:visad:2.0-20130124"
 
@@ -241,7 +233,7 @@ libraries["commons-compress"] = "org.apache.commons:commons-compress:1.8.1"
 
 libraries["oro"] = "oro:oro:2.0.8"
 
-libraries["ncwms"] = dependencies.create("uk.ac.rdg.resc:ncwms:1.2.tds.4.6.12") {
+libraries["ncwms"] = dependencies.create("uk.ac.rdg.resc:ncwms:1.2.tds.4.6.14") {
     // This is an external dependency on an old artifact of ours.
     // The "cdm" artifact that we build in this project will take its place.
     // This needs to be a local exclusion; globally excluding "edu.ucar:cdm" would be very bad.
@@ -258,7 +250,7 @@ libraries["hibernate-validator"] = "org.hibernate:hibernate-validator:4.3.2.Fina
 
 libraries["jaxen"] = "jaxen:jaxen:1.1.4"
 
-libraries["threddsIso"] = "EDS:threddsIso:2.2.11"
+libraries["threddsIso"] = "EDS:threddsIso:2.2.12"
 
 libraries["aws-java-sdk-s3"] = dependencies.create("com.amazonaws:aws-java-sdk-s3:1.11.236") {
     // exclude jackson deps so that they can be overridden 
@@ -274,9 +266,9 @@ libraries["aws-java-sdk-s3"] = dependencies.create("com.amazonaws:aws-java-sdk-s
 }
 
 // replace the jackson.core libs that were excluded from aws-java-sdk-s3
-libraries["jackson-core"] = "com.fasterxml.jackson.core:jackson-core:2.9.8"
-libraries["jackson-annotations"] = "com.fasterxml.jackson.core:jackson-annotations:2.9.8"
-libraries["jackson-databind"] = "com.fasterxml.jackson.core:jackson-databind:2.9.8"
+libraries["jackson-core"] = "com.fasterxml.jackson.core:jackson-core:2.9.9"
+libraries["jackson-annotations"] = "com.fasterxml.jackson.core:jackson-annotations:2.9.9"
+libraries["jackson-databind"] = "com.fasterxml.jackson.core:jackson-databind:2.9.9.1"
 
 libraries["ncsos"] = dependencies.create("com.asascience:ncsos:1.4.3") {
     // This is an external TDS plugin that depends on an old
