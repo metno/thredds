@@ -27,8 +27,8 @@
     to write NetCDF-4 files) is usually not configured for thread safety when it's built. As a result,
     concurrent writing of NetCDF-4 files will sometimes produce unexpected results.</p>
 
-<p>When might you do concurrent writes of NetCDF-4 files? For <a href="../../tds/TDS.html">TDS</a> administrators,
-    this can often happen in the <a href="../../tds/reference/NetcdfSubsetServiceReference.html">NetCDF Subset Service
+<p>When might you do concurrent writes of NetCDF-4 files? For <a href="/software/tds/v4.6/TDS.html">TDS</a> administrators,
+    this can often happen in the <a href="/software/tds/v4.6/reference/NetcdfSubsetServiceReference.html">NetCDF Subset Service
         (NCSS)</a>. Therefore, we recommend that TDS admins who enable NCSS with NetCDF-4 output
     <a href="#installation_linux_source_build">build thread-safe libraries from source</a> instead.</p>
 
@@ -43,7 +43,7 @@
 <h4><a name="installation_linux_source_build" id="installation_linux_source_build">Build from source</a></h4>
 
 <p>Instructions for how to build libnetcdf from source can be found <a
-        href="http://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html">here</a>. However,
+        href="https://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html">here</a>. However,
    in order to produce a thread-safe version of libhdf5, you'll want to run the <code>configure</code>
    script with the following arguments:</p>
 <pre>
@@ -63,7 +63,7 @@
 <p>As with Linux, a package manager is usually the easiest option. libnetcdf is known to be available both from
     <a href="http://brew.sh/">Homebrew</a> and <a href="https://www.macports.org/">MacPorts</a>. &quot;netcdf&quot; is
     usually the package name you want. <a
-            href="http://www.unidata.ucar.edu/support/help/MailArchives/netcdf/msg11807.html">Here</a> is a support
+            href="https://www.unidata.ucar.edu/support/help/MailArchives/netcdf/msg11807.html">Here</a> is a support
     question that may be useful.</p>
 
 <h4><a name="installation_mac_source_build" id="installation_mac_source_build">Build from source</a></h4>
@@ -74,12 +74,12 @@
 
 <h4><a name="installation_windows_pre_built" id="installation_windows_pre_built">Pre-built</a></h4>
 
-<p>Pre-built binaries are available <a href="http://www.unidata.ucar.edu/software/netcdf/docs/winbin.html">here</a>.</p>
+<p>Pre-built binaries are available <a href="https://www.unidata.ucar.edu/software/netcdf/docs/winbin.html">here</a>.</p>
 
 <h4><a name="installation_windows_source_build" id="installation_windows_source_build">Build from source</a></h4>
 
 <p>Instructions for how to build libnetcdf from source can be found <a
-        href="http://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html#netCDF-CMake">here</a>.
+        href="https://www.unidata.ucar.edu/software/netcdf/docs/getting_and_building_netcdf.html#netCDF-CMake">here</a>.
     Currently, it's unknown how&mdash;or even <em>if</em>&mdash;thread-safe libhdf5 binaries can be built on Windows. If
     you've tried it yourself, please <a href="mailto:support-netcdf-java@unidata.ucar.edu">let us know</a> your results!
 </p>
@@ -144,7 +144,7 @@
 
 <ul>
     <li>For TDS users, we recommend setting the library path and name in the <a
-            href="../../tds/reference/ThreddsConfigXMLFile.html#netcdfCLibrary">THREDDS configuration file</a>.
+            href="/software/tds/v4.6/reference/ThreddsConfigXMLFile.html#netcdfCLibrary">THREDDS configuration file</a>.
     </li>
     <li>For standalone CDM library use, you can
         <ul>
@@ -153,7 +153,7 @@
             <li>set the library path and name in the <a href="RuntimeLoading.html#XML">runtime configuration file</a>
             </li>
             <li>directly call <a
-                    href="http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/javadocAll/ucar/nc2/jni/netcdf/Nc4Iosp.html#setLibraryAndPath(java.lang.String,%20java.lang.String)">Nc4Iosp.setLibraryAndPath()</a>
+                    href="https://www.unidata.ucar.edu/software/netcdf-java/v4.6/javadocAll/ucar/nc2/jni/netcdf/Nc4Iosp.html#setLibraryAndPath(java.lang.String,%20java.lang.String)">Nc4Iosp.setLibraryAndPath()</a>
                 from your Java program
             </li>
         </ul>

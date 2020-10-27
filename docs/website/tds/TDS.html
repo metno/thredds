@@ -22,12 +22,12 @@
     are used to provide virtual directories of available data and their
     associated metadata. These catalogs can be generated dynamically or
     statically.  </li>
-  <li>The <a href="../netcdf-java/documentation.htm">Netcdf-Java/CDM library</a>
+  <li>The <a href="/software/netcdf-java/v4.6/documentation.htm">Netcdf-Java/CDM library</a>
     reads NetCDF, OpenDAP, and HDF5 datasets, as well as other binary
     formats such as GRIB and NEXRAD into a Common Data Model (CDM),
     essentially an (extended) netCDF view of the data. Datasets that can be
     read through the Netcdf-Java library are called <em>CDM datasets</em>.  </li>
-  <li>TDS can use the <a href="../netcdf-java/ncml/index.htm">NetCDF Markup Language</a> (NcML) to modify and create virtual aggregations of
+  <li>TDS can use the <a href="/software/netcdf-java/v4.6/ncml/index.htm">NetCDF Markup Language</a> (NcML) to modify and create virtual aggregations of
     CDM datasets.  </li>
   <li>An integrated server provides <a href="http://www.opendap.org/">OPeNDAP</a> access to any CDM dataset. OPeNDAP is a widely used, subsetting data access
     method extending the HTTP protocol.  </li>
@@ -55,9 +55,9 @@
   web server. Configuration is made as simple and as automatic as
   possible, and we have made the server as secure as possible. The
   library is freely available and the source code is released under the
-  (MIT-style) netCDF library <a href="http://www.unidata.ucar.edu/software/netcdf/copyright.html">license</a>. </p>
+  (MIT-style) netCDF library <a href="https://www.unidata.ucar.edu/software/netcdf/copyright.html">license</a>. </p>
 <p>*Writing to netCDF-4 files is supported through the netCDF C library only.</p>
-<p>Much of the realtime data available over the Unidata <a href="http://www.unidata.ucar.edu/software/idd/index.html">Internet Data Distribution</a> (IDD) is
+<p>Much of the realtime data available over the Unidata <a href="https://www.unidata.ucar.edu/software/idd/index.html">Internet Data Distribution</a> (IDD) is
   available through a THREDDS Data Server hosted at Unidata on <a href="http://thredds.ucar.edu/thredds/">thredds.ucar.edu</a>.
   You are welcome to browse and access these meteorological datasets. If
   you need regular access to large amounts of data, please contact <a href="mailto:support-idd@unidata.ucar.edu.">support-idd@unidata.ucar.edu.</a></p>
@@ -72,13 +72,12 @@
 
 <h2>Downloads</h2>
 
-<p><strong>TDS 4.6 is the stable release. It requires Tomcat 7+ and Java 7+.</strong></p>
+<p><strong>TDS 4.6 is the stable release. It requires Tomcat 7+ and Java 8+.</strong></p>
 <ul>
-  <li>Download the latest release: [<a href="ftp://ftp.unidata.ucar.edu/pub/thredds/4.6/current/thredds.war">thredds.war</a> (<a href="ftp://ftp.unidata.ucar.edu/pub/thredds/4.6/current/thredds.war.md5">MD5</a>)]
-    (<a href="ftp://ftp.unidata.ucar.edu/pub/thredds/4.6/current/thredds.war.sha1">SHA1</a>)]
+  <li>Download the latest release: [<a href="https://www.unidata.ucar.edu/downloads/tds/">thredds.war</a>]
     [<a href="https://github.com/Unidata/thredds">source on GitHub</a>]
     [<a href="https://artifacts.unidata.ucar.edu/repository/unidata-releases/edu/ucar/tds/">artifacts in Unitdata's maven repository</a>] </li>
-  <li>The THREDDS Data Manager (TDM)  <a href="ftp://ftp.unidata.ucar.edu/pub/thredds/4.6/current/tdm-4.6.jar">tdm.jar</a></li>
+  <li>The THREDDS Data Manager (TDM)  <a href="https://www.unidata.ucar.edu/downloads/tds/">tdm.jar</a></li>
   <li>Documentation:
     <ul>
       <li><a href="reference/index.html">Reference</a></li>
@@ -86,23 +85,23 @@
       <li><a href="faq.html">FAQ</a></li>
       <li><a href="UpgradingTo4.6.html">Upgrading to TDS 4.6</a></li>
       <li><a href="tutorial/Checklist.html">Checklist for Production Installation</a></li>
-      <li><a href="../netcdf-java/tutorial/SourceCodeBuild.html">Building TDS from source code</a></li>
+      <li><a href="/software/netcdf-java/v4.6/tutorial/SourceCodeBuild.html">Building TDS from source code</a></li>
     </ul>
   </li>
 </ul>
 <p><strong>TDS 4.3 is the previous release. It requires Tomcat 6+ and Java 6+.</strong></p>
 <ul>
-  <li>Download the latest  release: [<a href="ftp://ftp.unidata.ucar.edu/pub/thredds/4.3/current/thredds.war">thredds.war</a> (<a href="ftp://ftp.unidata.ucar.edu/pub/thredds/4.3/current/thredds.war.md5">MD5</a>)] (<a href="ftp://ftp.unidata.ucar.edu/pub/thredds/4.3/current/thredds.war.sha1">SHA1</a>)]
+  <li>Download the latest  release: [<a href="https://artifacts.unidata.ucar.edu/service/rest/repository/browse/unidata-releases/edu/ucar/tds/">thredds.war</a>]
     [<a href="https://github.com/Unidata/thredds">source on GitHub</a>] [<a href="https://artifacts.unidata.ucar.edu/repository/unidata-releases/edu/ucar/tds/">artifacts in Unitdata's maven repository</a>]</li>
   <li>Documentation:
     <ul>
-      <li><a href="http://www.unidata.ucar.edu/software/thredds/v4.3/tds/tds4.3/reference/index.html">Reference</a></li>
-      <li><a href="http://www.unidata.ucar.edu/software/thredds/v4.3/tds/tds4.3/tutorial/index.html">Tutorial</a></li>
-      <li><a href="http://www.unidata.ucar.edu/software/thredds/v4.3/tds/tds4.3/faq.html">FAQ</a></li>
-      <li><a href="http://www.unidata.ucar.edu/software/thredds/v4.3/tds/tds4.3/UpgradingTo4.3.html">Upgrading to TDS 4.3</a> </li>
-      <li><a href="http://www.unidata.ucar.edu/software/thredds/v4.3/tds/tds4.3/AccessChangesTds4.3.html">New GRIB handling in TDS 4.3</a></li>
-      <li><a href="http://www.unidata.ucar.edu/software/thredds/v4.3/tds/tds4.3/tutorial/Checklist.html">Checklist for Production Installation</a></li>
-      <li><a href="http://www.unidata.ucar.edu/software/thredds/v4.3/tds/tds4.3/SourceCodeBuild.html">Building TDS 4.3 from source code</a></li>
+      <li><a href="https://www.unidata.ucar.edu/software/tds/v4.3/tds4.3/reference/index.html">Reference</a></li>
+      <li><a href="https://www.unidata.ucar.edu/software/tds/v4.3/tds4.3/tutorial/index.html">Tutorial</a></li>
+      <li><a href="https://www.unidata.ucar.edu/software/tds/v4.3/tds4.3/faq.html">FAQ</a></li>
+      <li><a href="https://www.unidata.ucar.edu/software/tds/v4.3/tds4.3/UpgradingTo4.3.html">Upgrading to TDS 4.3</a> </li>
+      <li><a href="https://www.unidata.ucar.edu/software/tds/v4.3/tds4.3/AccessChangesTds4.3.html">New GRIB handling in TDS 4.3</a></li>
+      <li><a href="https://www.unidata.ucar.edu/software/tds/v4.3/tds4.3/tutorial/Checklist.html">Checklist for Production Installation</a></li>
+      <li><a href="https://www.unidata.ucar.edu/software/tds/v4.3/tds4.3/SourceCodeBuild.html">Building TDS 4.3 from source code</a></li>
     </ul>
   </li>
 </ul>

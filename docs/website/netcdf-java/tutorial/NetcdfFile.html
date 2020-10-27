@@ -43,7 +43,7 @@
 <h3>Using ToolsUI to browse the metadata of a dataset </h3>
 
 <p>The NetCDF Tools User Interface (aka ToolsUI) is a program for browsing and debugging NetCDF files. You can start it from the command line, or
-  <a href="http://www.unidata.ucar.edu/software/netcdf-java/current/webstart/netCDFtools.jnlp">launch it from webstart</a>. </p>
+  <a href="https://www.unidata.ucar.edu/software/netcdf-java/v4.6/webstart/netCDFtools.jnlp">launch it from webstart</a>. </p>
 <pre ><img src="images/ToolsUIViewer.jpg" width="1096" height="685">
 </pre>
 <p > In this screen shot, the <strong>Viewer</strong> tab is shown displaying a NetCDF file
@@ -264,7 +264,7 @@ NetCDF-3 files can be made accessible over the network by simply placing them on
   Apache. The server must be configured to set the "Content-Length" and "Accept-Ranges: bytes" headers.
   
 The client that wants to read these files just uses the usual <em>NetcdfFile.open(String
-  location, &hellip;)</em> method to open a file. The location contains the URL of the file, for example: <em>http://www.unidata.ucar.edu/staff/caron/test/mydata.nc</em>.
+  location, &hellip;)</em> method to open a file. The location contains the URL of the file, for example: <em>https://www.unidata.ucar.edu/staff/caron/test/mydata.nc</em>.
    In order to use this option you need to have <strong>HttpClient.jar</strong> in your classpath.
   
 The <em>ucar.nc2</em> library uses the HTTP 1.1 protocol's "Range" command to get ranges of bytes from the

@@ -107,29 +107,29 @@
 
 17. Set the `webdir` and `ftpdir` Gradle properties
     - Open `~/.gradle/gradle.properties`
-    - Set `webdir` to `${webMountDir}/content/software/thredds/v${releaseMajor}/netcdf-java`
+    - Set `webdir` to `${webMountDir}/content/software/netcdf-java/v${releaseMajor}`
     - Set `ftpdir` to `${webMountDir}/ftp/pub/netcdf-java/v${releaseMajor}`
     - The value of `webMountDir` will likely differ, but mine is `/Volumes/web`.
     - So for example, on OS X, my (Christian's) Gradle properties for `webdir` and `ftpdir` are:
       ```properties
-      webdir=/Volumes/web/content/software/thredds/v4.6/netcdf-java
+      webdir=/Volumes/web/content/software/netcdf-java/v4.6
       ftpdir=/Volumes/web/ftp/pub/netcdf-java/v4.6
       ```
 
-18. Release Web Start to `www:/content/software/thredds/v${releaseMajor}/netcdf-java/webstart`
+18. Release Web Start to `www:/content/software/netcdf-java/v${releaseMajor}/webstart`
     - Make sure that you have the correct gradle.properties (see Christian for info). In particular, you'll need the
       `keystore`, `keystoreAlias`, `keystorePassword`, `webdir`, and `ftpdir` properties defined.
     - Rename old directories
-      * `cd /content/software/thredds/v${releaseMajor}/netcdf-java/`
+      * `cd /content/software/netcdf-java/v${releaseMajor}/`
       * `mv webstart webstartOld`
     - Perform release
       * `./gradlew :ui:clean :ui:releaseWebstart`
     - Test the new Web Start. If there were no errors, delete the old stuff.
       * `rm -r webstartOld`
 
-19. Release Javadoc to `www:/content/software/thredds/v${releaseMajor}/netcdf-java/javadoc` and `javadocAll`
+19. Release Javadoc to `www:/content/software/netcdf-java/v${releaseMajor}/javadoc` and `javadocAll`
     - Rename old directories
-      * `cd /content/software/thredds/v${releaseMajor}/netcdf-java/`
+      * `cd /content/software/netcdf-java/v${releaseMajor}/`
       * `mv javadoc javadocOld`
       * `mv javadocAll javadocAllOld`
     - Perform release
@@ -141,7 +141,7 @@
 
 20. Change permissions of the files you just copied.
     ```bash
-    cd /content/software/thredds/v${releaseMajor}/netcdf-java/
+    cd /content/software/netcdf-java/v${releaseMajor}/
     find webstart -type d -exec chmod 775 {} \;
     find webstart -type f -exec chmod 664 {} \;
     find javadoc -type d -exec chmod 775 {} \;
@@ -151,12 +151,12 @@
     ```
 
 21. Update Unidata download page(s)
-    - check http://www.unidata.ucar.edu/downloads/thredds/index.jsp
-      * modify `www:/content/downloads/thredds/toc.xml` as needed
-    - check http://www.unidata.ucar.edu/downloads/netcdf/netcdf-java-4/index.jsp
-      * modify `www:/content/downloads/netcdf/netcdf-java-4/toc.xml` as needed
+    - check https://www.unidata.ucar.edu/downloads/tds/
+      * modify `www:/content/downloads/tds/toc.xml` as needed
+    - check https://www.unidata.ucar.edu/downloads/netcdf-java/
+      * modify `www:/content/downloads/netcdf-java/toc.xml` as needed
 
-22. Edit `www:/content/software/thredds/latest.xml` to reflect the correct
+22. Edit `www:/content/software/tds/latest.xml` to reflect the correct
     releaseMinor version for stable and development. This file is read by all
     TDS > v4.6 to make log entries regarding current stable and development versions
     to give users a heads-up of the need to update.
@@ -203,11 +203,11 @@
       https://github.com/Unidata/thredds/pulls?q=base%3Amaster+merged%3A%3E%3D2016-02-12
 
 31. Make blog post for the release.
-    - Example: http://www.unidata.ucar.edu/blogs/news/entry/netcdf-java-library-and-tds4
+    - Example: s.ucar.edu/blogs/news/entry/netcdf-java-library-and-tds4
     - Best to leave it relatively short and just link to the GitHub release.
 
 32. Make a release announcement to the mailing lists: netcdf-java@unidata.ucar.edu and thredds@unidata.ucar.edu
-    - Example: http://www.unidata.ucar.edu/mailing_lists/archives/netcdf-java/2017/msg00000.html
+    - Example: https://www.unidata.ucar.edu/mailing_lists/archives/netcdf-java/2017/msg00000.html
     - Best to leave it relatively short and just link to the GitHub release.
 
 **Note 1**: In the Maven build, the maven-release-plugin roughly handled steps 2-6 and 23-25 for us. In the future, we

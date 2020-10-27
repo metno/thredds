@@ -69,7 +69,7 @@
                         var jQueryfile = document.createElement('script');
                         jQueryfile.setAttribute("type", "text/javascript");
                         jQueryfile.setAttribute("src",
-                        context+"/js/lib/jquery-3.4.0.slim.min.js");
+                        context+"/js/lib/jquery-3.5.1.slim.min.js");
                         headTag.appendChild(jQueryfile);
 
                         //ncssApp.js
@@ -326,7 +326,7 @@
                 </div>
                 <!-- Footer -->
                 <h3>
-                    <a href="http://www.unidata.ucar.edu/software/thredds/current/tds/reference/NetcdfSubsetServiceReference.html">
+                    <a href="https://www.unidata.ucar.edu/software/tds/current/reference/NetcdfSubsetServiceReference.html">
                         NetCDF Subset Service Documentation
                     </a>
                 </h3>
