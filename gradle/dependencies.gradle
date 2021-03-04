@@ -276,13 +276,13 @@ libraries["ncsos"] = dependencies.create("com.asascience:ncsos:1.4.3") {
     exclude group: 'edu.ucar', module: 'tds'
 }
 
-libraries["commonmark"] = "com.atlassian.commonmark:commonmark:0.12.1"
+libraries["commonmark"] = "com.atlassian.commonmark:commonmark:0.17.1"
 
 ////////////////////////////////////////// Metrics //////////////////////////////////////////
 
-libraries["simpleclient"] = "io.prometheus:simpleclient:0.6.0"
-libraries["simpleclient_hotspot"] = "io.prometheus:simpleclient_hotspot:0.6.0"
-libraries["simpleclient_servlet"] = "io.prometheus:simpleclient_servlet:0.6.0"
+libraries["simpleclient"] = "io.prometheus:simpleclient:0.10.0"
+libraries["simpleclient_hotspot"] = "io.prometheus:simpleclient_hotspot:0.10.0"
+libraries["simpleclient_servlet"] = "io.prometheus:simpleclient_servlet:0.10.0"
 
 //////////////////////////// Transitive dependency replacements and exclusions ////////////////////////////
 
