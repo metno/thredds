@@ -36,7 +36,9 @@ buildscript {
     apply from: "$rootDir/gradle/dependencies.gradle"
 
     repositories {
-        jcenter()
+        maven {
+            url "https://plugins.gradle.org/m2" // For shadow plugin
+        }
     }
     dependencies {
         classpath libraries["shadow"]

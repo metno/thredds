@@ -33,7 +33,9 @@
 package ucar.nc2.iosp.nids;
 
 import junit.framework.*;
+import org.junit.Assert;
 import ucar.ma2.*;
+import ucar.ma2.MAMath.MinMax;
 import ucar.nc2.*;
 import ucar.unidata.util.test.TestDir;
 
@@ -412,6 +414,110 @@ public class TestNids extends TestCase {
 
     ncfile.close();
   }
+
+  public void testRadialImageMessagePcode180() throws IOException {
+    // Radial Image message, product code 180 (TDWR)
+    double comparisonTolerance = 0.1;
+    String basereflect180TdwrFile = TestDir.cdmLocalTestDataDir + "nids/Level3_TUL_TZ0_20200811_1804.nids";
+    try (NetcdfFile ncf = NetcdfFile.open(basereflect180TdwrFile)) {
+      Variable bref = ncf.findVariable("BaseReflectivity");
+      Array data = bref.read();
+      double max = MAMath.getMaximum(data);
+      // max reflectivity value as shown by NWS web display at the time
+      // not a *great* check, but not the worst either.
+      Assert.assertTrue(Math.abs(max - 56.5) < comparisonTolerance);
+      // test that range of the radial axis variable is good
+      // expect 0 to 48 nautical miles (according to the ICD)
+      // which is roughly 0 to 88650 meters
+      Variable gate = ncf.findVariable("gate");
+      Array gateValues = gate.read();
+      MinMax minMax = MAMath.getMinMax(gateValues);
+      Assert.assertTrue(Math.abs(minMax.min) < comparisonTolerance);
+      Assert.assertTrue(Math.abs(minMax.max - 88650) < comparisonTolerance);
+    }
+  }
+
+  public void testRadialImageMessagePcode153() throws IOException {
+    // Radial Image message, product code 153 (super res reflectivity).
+    double comparisonTolerance = 0.1;
+    String datafile = TestDir.cdmLocalTestDataDir + "nids/H0Z_20200812_1318";
+    try (NetcdfFile ncf = NetcdfFile.open(datafile)) {
+      Variable bref = ncf.findVariable("BaseReflectivityDR");
+      Array data = bref.read();
+      double max = MAMath.getMaximum(data);
+      // expected max reflectivity value obtained from metpy decoder.
+      Assert.assertTrue(Math.abs(max - 59.0) < comparisonTolerance);
+      // test that range of the radial axis variable is good.
+      Variable gate = ncf.findVariable("gate");
+      Array gateValues = gate.read();
+      MinMax minMax = MAMath.getMinMax(gateValues);
+      Assert.assertTrue(Math.abs(minMax.min) < comparisonTolerance);
+      // within 1 km of 460 km.
+      Assert.assertTrue(Math.abs(minMax.max - 460000) < 1000);
+    }
+  }
+
+  public void testRadialImageMessagePcode154() throws IOException {
+    // Radial Image message, product code 154 (super res velocity).
+    double comparisonTolerance = 0.1;
+    String datafile = TestDir.cdmLocalTestDataDir + "nids/H0V_20200812_1309";
+    try (NetcdfFile ncf = NetcdfFile.open(datafile)) {
+      Variable bref = ncf.findVariable("BaseVelocityDV");
+      Array data = bref.read();
+      double max = MAMath.getMaximum(data);
+      // expected max velocity value obtained from metpy decoder.
+      Assert.assertTrue(Math.abs(max - 44.5) < comparisonTolerance);
+      // test that range of the radial axis variable is good.
+      Variable gate = ncf.findVariable("gate");
+      Array gateValues = gate.read();
+      MinMax minMax = MAMath.getMinMax(gateValues);
+      Assert.assertTrue(Math.abs(minMax.min) < comparisonTolerance);
+      // within 1 km of 300 km.
+      Assert.assertTrue(Math.abs(minMax.max - 300000) < 1000);
+    }
+  }
+
+  public void testRadialImageMessagePcode155() throws IOException {
+    // Radial Image message, product code 155 (super res spectrum width).
+    double comparisonTolerance = 0.1;
+    String datafile = TestDir.cdmLocalTestDataDir + "nids/H0W_20200812_1305";
+    try (NetcdfFile ncf = NetcdfFile.open(datafile)) {
+      Variable bref = ncf.findVariable("SpectrumWidth");
+      Array data = bref.read();
+      double max = MAMath.getMaximum(data);
+      // expected max spectrum width value obtained from metpy decoder.
+      Assert.assertTrue(Math.abs(max - 15.0) < comparisonTolerance);
+      // test that range of the radial axis variable is good.
+      Variable gate = ncf.findVariable("gate");
+      Array gateValues = gate.read();
+      MinMax minMax = MAMath.getMinMax(gateValues);
+      Assert.assertTrue(Math.abs(minMax.min) < comparisonTolerance);
+      // within 1 km of 300 km.
+      Assert.assertTrue(Math.abs(minMax.max - 300000) < 1000);
+    }
+  }
+
+  public void testRadialImageMessagePcode167() throws IOException {
+    // Radial Image message, product code 167 (super res digital correlation coefficient).
+    double comparisonTolerance = 0.1;
+    String datafile = TestDir.cdmLocalTestDataDir + "nids/H0C_20200814_0417";
+    try (NetcdfFile ncf = NetcdfFile.open(datafile)) {
+      Variable bref = ncf.findVariable("CorrelationCoefficient");
+      Array data = bref.read();
+      double max = MAMath.getMaximum(data);
+      // expected max correlation coefficient value obtained from metpy decoder.
+      // can be greater than 1 due to the way it is measured, but should not be much greater than one.
+      Assert.assertTrue(Math.abs(max - 1.05167) < comparisonTolerance);
+      // test that range of the radial axis variable is good.
+      Variable gate = ncf.findVariable("gate");
+      Array gateValues = gate.read();
+      MinMax minMax = MAMath.getMinMax(gateValues);
+      Assert.assertTrue(Math.abs(minMax.min) < comparisonTolerance);
+      // within 1 km of 300 km.
+      Assert.assertTrue(Math.abs(minMax.max - 300000) < 1000);
+    }
+  }
+
 
   private void testReadData(Variable v) {
     Array a = null;

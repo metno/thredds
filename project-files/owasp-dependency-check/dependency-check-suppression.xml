@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suppressions xmlns="https://jeremylong.github.io/DependencyCheck/dependency-suppression.1.3.xsd">
+  <suppress>
+    <notes><![CDATA[
+    file name
+    reason: false positive - this is for the github project TooTallNate/Java-WebSocket, not javax.websocket.
+            see https://github.com/TooTallNate/Java-WebSocket/issues/1019#issuecomment-628507934
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/javax\.websocket/javax\.websocket\-api@.*$</packageUrl>
+    <cpe>cpe:/a:java-websocket_project:java-websocket</cpe>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    file name: tds-4.6.14-SNAPSHOT.war: ncwms-1.2.tds.4.6.12.jar
+    reason: ncwms does not use trac libs. false positive.
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/uk\.ac\.rdg\.resc/ncwms@.*$</packageUrl>
+    <cpe>cpe:/a:trac:trac</cpe>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+      file name example: godiva2/js/yui/treeview-min.js
+      reason: These CVEs only impact the Flash component of YUI.
+    ]]></notes>
+    <filePath regex="true">.*\/godiva2\/js\/yui\/.*\.js</filePath>
+    <cve>CVE-2012-5881</cve>
+    <cve>CVE-2012-5882</cve>
+    <cve>CVE-2012-5883</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+      file name example: taglibs-standard-impl-1.2.5.jar
+      reason: These CVEs are for a GO based project called tag (MP3/MP4/OGG/FLAC metadata parsing library).
+              False positive. See https://github.com/dhowden/tag/issues/77 (from first CVE listed)
+    ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.apache\.taglibs/taglibs\-standard\-impl@.*$</packageUrl>
+    <cve>CVE-2020-29242</cve>
+    <cve>CVE-2020-29243</cve>
+    <cve>CVE-2020-29244</cve>
+    <cve>CVE-2020-29245</cve>
+  </suppress>
+</suppressions>

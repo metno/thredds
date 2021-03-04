@@ -35,6 +35,7 @@ package ucar.nc2;
 import java.io.*;
 
 import ucar.ma2.Array;
+import ucar.ma2.InvalidRangeException;
 import ucar.nc2.constants.CDM;
 
 /**
