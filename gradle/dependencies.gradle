@@ -85,6 +85,8 @@ libraries["coveralls-gradle-plugin"] = "org.kt3k.gradle.plugin:coveralls-gradle-
 
 libraries["depcheck"] = "org.owasp:dependency-check-gradle:6.0.2"
 
+libraries["unidata-nexus"] = "edu.ucar.unidata:unidata-nexus-gradle:0.0.1"
+
 ////////////////////////////////////////// Spring //////////////////////////////////////////
 
 versions["spring"] = "4.3.29.RELEASE"
@@ -198,8 +200,6 @@ libraries["jna"] = "net.java.dev.jna:jna:4.2.2"
 
 libraries["joda-time"] = "joda-time:joda-time:2.8.1"
 
-libraries["jsoup"] = "org.jsoup:jsoup:1.11.2"
-
 libraries["protobuf-java"] = "com.google.protobuf:protobuf-java:3.5.0"
 
 libraries["quartz"] = "org.quartz-scheduler:quartz:2.3.2"
@@ -224,13 +224,13 @@ libraries["jgoodies-forms"] = "com.jgoodies:jgoodies-forms:1.6.0"
 
 libraries["commons-fileupload"] = "commons-fileupload:commons-fileupload:1.3.3"
 
-libraries["commons-io"] = "commons-io:commons-io:2.4"
+libraries["commons-io"] = "commons-io:commons-io:2.7"
 
 libraries["commons-compress"] = "org.apache.commons:commons-compress:1.8.1"
 
 libraries["oro"] = "oro:oro:2.0.8"
 
-libraries["ncwms"] = dependencies.create("uk.ac.rdg.resc:ncwms:1.2.tds.4.6.16") {
+libraries["ncwms"] = dependencies.create("uk.ac.rdg.resc:ncwms:1.2.tds.4.6.17") {
     // This is an external dependency on an old artifact of ours.
     // The "cdm" artifact that we build in this project will take its place.
     // This needs to be a local exclusion; globally excluding "edu.ucar:cdm" would be very bad.
@@ -247,7 +247,7 @@ libraries["hibernate-validator"] = "org.hibernate:hibernate-validator:4.3.2.Fina
 
 libraries["jaxen"] = "jaxen:jaxen:1.1.4"
 
-libraries["threddsIso"] = "EDS:threddsIso:2.2.14"
+libraries["threddsIso"] = "EDS:threddsIso:2.2.15"
 
 libraries["aws-java-sdk-s3"] = dependencies.create("com.amazonaws:aws-java-sdk-s3:1.11.236") {
     // exclude jackson deps so that they can be overridden 
@@ -276,13 +276,13 @@ libraries["ncsos"] = dependencies.create("com.asascience:ncsos:1.4.3") {
     exclude group: 'edu.ucar', module: 'tds'
 }
 
-libraries["commonmark"] = "org.commonmark:commonmark:0.17.1"
+libraries["commonmark"] = "org.commonmark:commonmark:0.18.0"
 
 ////////////////////////////////////////// Metrics //////////////////////////////////////////
 
-libraries["simpleclient"] = "io.prometheus:simpleclient:0.10.0"
-libraries["simpleclient_hotspot"] = "io.prometheus:simpleclient_hotspot:0.10.0"
-libraries["simpleclient_servlet"] = "io.prometheus:simpleclient_servlet:0.10.0"
+libraries["simpleclient"] = "io.prometheus:simpleclient:0.12.0"
+libraries["simpleclient_hotspot"] = "io.prometheus:simpleclient_hotspot:0.12.0"
+libraries["simpleclient_servlet"] = "io.prometheus:simpleclient_servlet:0.12.0"
 
 //////////////////////////// Transitive dependency replacements and exclusions ////////////////////////////
 
