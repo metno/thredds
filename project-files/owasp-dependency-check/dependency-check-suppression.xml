@@ -58,9 +58,27 @@
   <suppress>
     <notes><![CDATA[
       file name: hibernate-validator-4.3.2.Final.jar
-      reason: we do not use the SafeHtml validator in this project.
+      reason: (CVE-2019-10219) we do not use the SafeHtml validator in this project.
+      (CVE-2017-7536) vulnerability not introduced until 5.2.x
      ]]></notes>
     <packageUrl regex="true">^pkg:maven/org\.hibernate/hibernate\-validator@.*$</packageUrl>
     <cve>CVE-2019-10219</cve>
+    <cve>CVE-2017-7536</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[
+      file name: spring-core-5.3.20.jar
+      reason: resolved CVE - only valid if using HTTPInvokerServiceExporter
+      ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring-core@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[(
+      file name: spring-web-5.3.20.jar
+      reason: resolved CVE - only valid if using HTTPInvokerServiceExporter
+      ]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.springframework/spring-web@.*$</packageUrl>
+    <cve>CVE-2016-1000027</cve>
   </suppress>
 </suppressions>
