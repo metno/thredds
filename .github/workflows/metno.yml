@@ -9,23 +9,6 @@ env:
   IMAGE_NAME: ${{ github.repository }}
 
 jobs:
-  scan-deps:
-    name: Scan dependencies
-    runs-on: ubuntu-latest
-    permissions: # The Dependency Submission API requires write permission
-      contents: write
-    steps:
-      - name: 'Checkout Repository'
-        uses: actions/checkout@v3
-
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'temurin'
-          java-version: '8'
-
-      - name: Run snapshot action
-        uses: mikepenz/gradle-dependency-submission@v0.8.5
-
   build-and-push-image:
     runs-on: ubuntu-latest
     permissions:
@@ -54,5 +37,6 @@ jobs:
         with:
           context: .
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags:
+          - latest
           labels: ${{ steps.meta.outputs.labels }}
