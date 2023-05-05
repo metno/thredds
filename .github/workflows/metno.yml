@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - metno
+    release:
+      types:
+        - published
 
 env:
   REGISTRY: ghcr.io
