@@ -1,5 +1,5 @@
 ARG ALPINE_VERSION=3.21.3
-ARG UBUNTU_VERSION=24.04
+ARG UBUNTU_VERSION=22.04
 
 FROM docker.io/ubuntu:${UBUNTU_VERSION} as build
 # Build thredds
