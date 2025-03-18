@@ -1,5 +1,5 @@
-ARG ALPINE_VERSION=3.17.5
-ARG UBUNTU_VERSION=22.04
+ARG ALPINE_VERSION=3.21.3
+ARG UBUNTU_VERSION=24.04
 
 FROM docker.io/ubuntu:${UBUNTU_VERSION} as build
 # Build thredds
@@ -25,7 +25,7 @@ RUN chmod 777 /usr/local/tomcat/content
 FROM docker.io/alpine:${ALPINE_VERSION}
 # Build tomcat
 ARG TOMCAT_MAJOR=9
-ARG TOMCAT_VERSION=9.0.80
+ARG TOMCAT_VERSION=9.0.102
 ENV CATALINA_OPTS="-XX:InitialRAMPercentage=90.0 -XX:MaxRAMPercentage=90.0" \
     JAVA_OPTS="-server -Djava.awt.headless=true -Djava.util.prefs.systemRoot=/usr/local/tomcat/.java -Djava.util.prefs.userRoot=/usr/local/tomcat/.java/.userPrefs" \
     CATALINA_HOME=/usr/local/tomcat \
